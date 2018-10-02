@@ -145,7 +145,7 @@ bot.on('message', msg => {
         CartController.showCart(user)
         break
            case kb.home.bro:
-            return bot.sendMessage(id, helper.contacts)
+            return bot.sendMessage(id, helper.bro)
         break
       
     }
