@@ -5,6 +5,7 @@ module.exports = {
     [kb.home.pack],
     [kb.home.bots, kb.home.ads],
     [kb.home.cart]
+    [kb.home.bro]
   ],
   cart: [
     [kb.cart.clear],
