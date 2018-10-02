@@ -9,7 +9,7 @@ module.exports = {
     let text, keyboard
 
     switch (item) {
-      case 'bouquets':
+      case 'packaging':
       case 'bots':
         text = `Хотите заказать ${item === 'bots' ? 'композицию' : 'букет'}?\nВы можете выбрать повод, на который Вы желаете ${item === 'bots' ? 'её' : 'его'} подарить , отсортировать ${item === 'bots' ? 'композиции' : 'букеты'} по стоимости, или посмотреть весь ассортимент`
         keyboard = {

@@ -93,8 +93,8 @@ bot.onText(/^\/[a-zA-Z]+$/, msg => {
       break
     case '/contacts':
       return bot.sendMessage(id, helper.contacts)
-    case '/bouquets':
-      MainController.sendCallback(msg, 'bouquets')
+    case '/packaging':
+      MainController.sendCallback(msg, 'packaging')
       break
     case '/bots':
       MainController.sendCallback(msg, 'bots')
@@ -130,8 +130,8 @@ bot.on('message', msg => {
     }
 
     switch(msg.text) {
-      case kb.home.bouqets:
-        MainController.sendCallback(msg, 'bouquets')
+      case kb.home.pack:
+        MainController.sendCallback(msg, 'packaging')
         break
       case kb.home.bots:
         MainController.sendCallback(msg, 'bots')
@@ -158,7 +158,7 @@ bot.on('callback_query', msg => {
           let showItem, itemText
           switch (msg.data) {
             case 'b_all':
-              showItem = 'bouquets'
+              showItem = 'packaging'
               itemText = 'букеты'
               break
             case 'c_all':
@@ -178,21 +178,21 @@ bot.on('callback_query', msg => {
           break
 
         // go to next page
-        case 'more bouquets':
+        case 'more packaging':
         case 'more bots':
         case 'more ads':
           PageController.changePage(user, msg.data.slice(5), 'add')
           break
 
         // go to previous page
-        case 'less bouquets':
+        case 'less packaging':
         case 'less bots':
         case 'less ads':
           PageController.changePage(user, msg.data.slice(5), 'remove')
           break
 
         //reset page
-        case 'start bouquets':
+        case 'start packaging':
         case 'start bots':
         case 'start ads':
           PageController.changePage(user, msg.data.slice(6), 'reset')
@@ -222,7 +222,7 @@ bot.on('callback_query', msg => {
           let queryPrice
           switch (msg.data.substr(0,1)) {
             case 'b':
-              queryPrice = 'bouquets'
+              queryPrice = 'packaging'
               break
             case 'c':
               queryPrice = 'bots'
@@ -245,7 +245,7 @@ bot.on('callback_query', msg => {
         case 'morePrice b_midhigh':
         case 'morePrice b_high':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-            .then(() => PageController.changePagePrice(user, 'bouquets', 'add', msg.data))
+            .then(() => PageController.changePagePrice(user, 'packaging', 'add', msg.data))
           break
 
         case 'morePrice c_low':
@@ -270,7 +270,7 @@ bot.on('callback_query', msg => {
         case 'lessPrice b_midhigh':
         case 'lessPrice b_high':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-            .then(() => PageController.changePagePrice(user, 'bouquets', 'remove', msg.data))
+            .then(() => PageController.changePagePrice(user, 'packaging', 'remove', msg.data))
           break
 
         case 'lessPrice с_low':
@@ -295,7 +295,7 @@ bot.on('callback_query', msg => {
         case 'startPrice b_midhigh':
         case 'startPrice b_high':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-            .then(() => PageController.changePagePrice(user, 'bouquets', 'reset', msg.data))
+            .then(() => PageController.changePagePrice(user, 'packaging', 'reset', msg.data))
           break
 
         case 'startPrice c_low':
@@ -333,7 +333,7 @@ bot.on('callback_query', msg => {
         case 'c_wedding':
         case 'b_love':
         case 'c_love':
-          let queryReason = msg.data.substr(0,1) === 'b' ? 'bouquets' : 'bots'
+          let queryReason = msg.data.substr(0,1) === 'b' ? 'packaging' : 'bots'
           user.pagesReason[queryReason] = 1
           user.save()
             .then(() => bot.answerCallbackQuery({callback_query_id: msg.id}))
@@ -346,7 +346,7 @@ bot.on('callback_query', msg => {
         case 'moreReason b_wedding':
         case 'moreReason b_love':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-            .then(() => PageController.changePageReason(user, 'bouquets', 'add', msg.data))
+            .then(() => PageController.changePageReason(user, 'packaging', 'add', msg.data))
           break
 
         case 'moreReason c_birthday':
@@ -363,7 +363,7 @@ bot.on('callback_query', msg => {
         case 'lessReason b_wedding':
         case 'lessReason b_love':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-            .then(() => PageController.changePageReason(user, 'bouquets', 'remove', msg.data))
+            .then(() => PageController.changePageReason(user, 'packaging', 'remove', msg.data))
           break
 
         case 'lessReason c_birthday':
@@ -380,7 +380,7 @@ bot.on('callback_query', msg => {
         case 'startReason b_wedding':
         case 'startReason b_love':
           bot.answerCallbackQuery({callback_query_id: msg.id})
-              .then(() => PageController.changePageReason(user, 'bouquets', 'reset', msg.data))
+              .then(() => PageController.changePageReason(user, 'packaging', 'reset', msg.data))
           break
 
         case 'startReason c_birthday':

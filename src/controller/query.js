@@ -203,7 +203,7 @@ module.exports = {
     }).catch(err => console.log(err))
   },
   async findByReason (user, cb_data) {
-    let query = cb_data.substr(0,1) === 'b' ? 'bouquets' : 'bots',
+    let query = cb_data.substr(0,1) === 'b' ? 'packaging' : 'bots',
         page = user.pagesReason[query],
         count, result
 
